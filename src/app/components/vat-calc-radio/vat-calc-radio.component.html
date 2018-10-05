@@ -1,0 +1,71 @@
+<div fxLayout="row column">
+  <mat-card fxFlex="40" fxFlex.lt-md="100" fxFlexOffset="30" fxFlexOffset.lt-md="0">
+    <mat-card-header>
+      <mat-card-title>VAT Calculator</mat-card-title>
+      <mat-card-subtitle>VAT calculator for {{countryVatRate.country}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <br />
+      <form fxLayout="row column" [formGroup]="vatForm">
+        <mat-radio-group formControlName="vatRate" fxFlex="100">
+          <label fxFlex="25">VAT Rate:</label>
+          <mat-radio-button fxFlex="25" *ngFor="let item of countryVatRate.vatRates" value="{{item}}">{{item}}%</mat-radio-button>
+        </mat-radio-group>
+        <mat-error style="text-align: center;" fxFlex="100" *ngIf="vatRate.errors?.required && vatRate.touched">
+          The VAT rate is required
+        </mat-error>
+        <br />
+        <mat-divider class="position-relative"></mat-divider>
+        <br />
+
+        <div fxFlex="100">
+          <mat-form-field fxFlex="33">
+            <input formControlName="gross" matInput type="text" placeholder="Gross" class="right-align">
+            <mat-error *ngIf="gross.errors?.required && (gross.touched || gross.dirty)">
+              The field is required
+            </mat-error>
+            <mat-error *ngIf="gross.errors?.nonNumericAmount && (gross.touched || gross.dirty)">
+              The field must be a number
+            </mat-error>
+            <mat-error *ngIf="gross.errors?.min && (gross.touched || gross.dirty)">
+              The value must be greater than 0
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="33">
+            <input formControlName="nett" matInput placeholder="Nett" class="right-align">
+            <mat-error *ngIf="nett.errors?.required && (nett.touched || nett.dirty)">
+              The field is required
+            </mat-error>
+            <mat-error *ngIf="nett.errors?.nonNumericAmount && (nett.touched || nett.dirty)">
+              The field must be a number
+            </mat-error>
+            <mat-error *ngIf="nett.errors?.min && (nett.touched || nett.dirty)">
+              The value must be greater than 0
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="33">
+            <input formControlName="vat" matInput placeholder="VAT" class="right-align">
+            <mat-error *ngIf="vat.errors?.required && (vat.touched || vat.dirty)">
+              The field is required
+            </mat-error>
+            <mat-error *ngIf="vat.errors?.nonNumericAmount && (vat.touched || vat.dirty)">
+              The field must be a number
+            </mat-error>
+            <mat-error *ngIf="vat.errors?.min && (vat.touched || vat.dirty)">
+              The value must be greater than 0
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-radio-group formControlName="amountType" fxFlex="100">
+          <mat-radio-button fxFlex="33" value="gross"></mat-radio-button>
+          <mat-radio-button fxFlex="33" value="nett"></mat-radio-button>
+          <mat-radio-button fxFlex="33" value="vat"></mat-radio-button>
+        </mat-radio-group>
+        <br />
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
