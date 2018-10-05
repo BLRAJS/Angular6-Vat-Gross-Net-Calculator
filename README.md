@@ -1,4 +1,9 @@
-# VatCalculator
+## Angular6-Vat-Gross-Net-Calulator
+##Austrian Vat-Net-Gross calculator 
+##Angular v6 #Google Material 
+##Reactive forms + custom validators + dynamic inputs 
+##Services + math formula
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
 
